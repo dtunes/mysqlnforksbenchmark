@@ -1,0 +1,39 @@
+version: '3.6'
+
+services:
+  percona:
+    build:
+      context: percona
+      args:
+        - VERSION=${PERCONA_VERSION}
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:3306"
+  mysql:
+    build:
+      context: mysql
+      args:
+        - VERSION=${MYSQL_VERSION}
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:3306"
+  maria:
+    build:
+      context: maria
+      args:
+        - VERSION=${MARIA_VERSION}
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:3306"
